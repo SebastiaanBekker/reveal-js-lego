@@ -79,16 +79,29 @@
 						- What can be done this sprint?
 						- What is our commitment as a team?
 					</section>
-					<section>
-						<div class="clock" style="margin:2em; "></div>
+					<section data-state="timer">
+						<div class="clock" style="width: auto;display: inline-block;"></div>
 
 						<script type="text/javascript">
 							var clock;
 							$(document).ready(function() {
-								// Instantiate a counter
 								clock = new FlipClock($('.clock'), 180, {
 									clockFace: 'Minute',
-									autoStart: true,
+									autoStart: false,
+									countdown: true
+								});
+							});
+						</script>
+					</section>
+					<section data-state="timer2">
+						<div class="clock2" style="width: auto;display: inline-block;"></div>
+
+						<script type="text/javascript">
+							var clock2;
+							$(document).ready(function() {
+								clock2 = new FlipClock($('.clock2'), 180, {
+									clockFace: 'Minute',
+									autoStart: false,
 									countdown: true
 								});
 							});
@@ -137,7 +150,7 @@
 						<section data-markdown>
 							##Demo and review
 							##Retrospective
-						</section>	
+						</section>
 				</section>
 		</section>
 
@@ -170,6 +183,18 @@
 					{ src: 'plugin/notes/notes.js', async: true }
 				]
 			});
+
+			Reveal.addEventListener('timer', function() {
+				setTimeout(function() {
+					clock.start();
+				}, 1000);
+			} );
+
+			Reveal.addEventListener('timer2', function() {
+				setTimeout(function() {
+					clock2.start();
+				}, 1000);
+			} );
 
 		</script>
 
